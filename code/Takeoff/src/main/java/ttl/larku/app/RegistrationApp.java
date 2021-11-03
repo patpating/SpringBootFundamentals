@@ -1,5 +1,6 @@
 package ttl.larku.app;
 
+import ttl.larku.dao.TheFactory;
 import ttl.larku.domain.Course;
 import ttl.larku.domain.Student;
 import ttl.larku.service.CourseService;
@@ -11,6 +12,8 @@ public class RegistrationApp {
 
     int value;
 
+    //StudentService ss = new StudentService();
+    StudentService ss = TheFactory.studentService();
     public static void main(String[] args) {
         RegistrationApp ra = new RegistrationApp();
         //ra.primeAndPrintBoth();
@@ -20,7 +23,6 @@ public class RegistrationApp {
 
 
     public void postRequestToAddAStudent() {
-        StudentService ss = new StudentService();
         ss.createStudent("New One", "282 484 9944", Student.Status.FULL_TIME);
 
         List<Student> students = ss.getAllStudents();
@@ -28,7 +30,7 @@ public class RegistrationApp {
     }
 
     public void getRequestForAllStudents() {
-        StudentService ss = new StudentService();
+//        StudentService ss = new StudentService();
         List<Student> students = ss.getAllStudents();
         System.out.println("All Students: " + students.size());
         students.forEach(System.out::println);

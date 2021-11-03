@@ -1,6 +1,7 @@
 package ttl.larku.service;
 
-import ttl.larku.dao.inmemory.InMemoryStudentDAO;
+import ttl.larku.dao.TheFactory;
+import ttl.larku.dao.inmemory.StudentDAO;
 import ttl.larku.domain.Student;
 import ttl.larku.domain.Student.Status;
 
@@ -11,10 +12,14 @@ public class StudentService {
 
     List<String> stuff = new ArrayList<>();
 
-    private InMemoryStudentDAO studentDAO;
+    private StudentDAO studentDAO;
+//    private InMemoryStudentDAO studentDAO;
+//    private JpaStudentDAO studentDAO;
 
     public StudentService() {
-        studentDAO = new InMemoryStudentDAO();
+//        studentDAO = new InMemoryStudentDAO();
+        //studentDAO = new JpaStudentDAO();
+        studentDAO = TheFactory.studentDAO();
     }
 
     public Student createStudent(String name, String phoneNumber, Status status) {
@@ -24,6 +29,9 @@ public class StudentService {
     }
 
     public Student createStudent(Student student) {
+        if(student.getPhoneNumber().startsWith("202")) {
+            throw new RuntimeException("No Students from area code 202 alllowed");
+        }
         student = studentDAO.create(student);
 
         return student;
@@ -53,7 +61,7 @@ public class StudentService {
         return studentDAO.getAll();
     }
 
-    public InMemoryStudentDAO getStudentDAO() {
+    public StudentDAO getStudentDAO() {
         return studentDAO;
     }
 
