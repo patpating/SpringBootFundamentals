@@ -55,11 +55,6 @@ public class StudentServiceUnitTest {
     @Mock
     private JPAStudentDAO studentDAO;
 
-    @Mock
-    private List<Student> mockList;
-
-    @Mock
-    private ApplicationEventPublisher publisher;
 
     @BeforeEach
     public void setup() {
@@ -71,12 +66,10 @@ public class StudentServiceUnitTest {
         Student s = new Student(name1, phoneNumber1, dob1, Status.FULL_TIME);
 
         Mockito.when(studentDAO.create(s)).thenReturn(s);
-        Mockito.doNothing().when(publisher).publishEvent(any());
 
         Student newStudent = studentService.createStudent(name1, phoneNumber1, dob1, Status.FULL_TIME);
 
         Mockito.verify(studentDAO, atMost(1)).create(s);
-        Mockito.verify(publisher, atMostOnce()).publishEvent(any());
     }
 
     @Test
