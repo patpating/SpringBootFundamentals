@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import ttl.larku.controllers.rest.RestResultGeneric;
 import ttl.larku.controllers.rest.RestResultGeneric.Status;
 import ttl.larku.domain.Student;
@@ -32,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Tag("expensive")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class RestClientSpringTest {
 
     @LocalServerPort
@@ -39,6 +41,7 @@ public class RestClientSpringTest {
 
     @Autowired
     private TestRestTemplate rt;
+
     @Autowired
     private ObjectMapper mapper;
 
@@ -65,6 +68,9 @@ public class RestClientSpringTest {
         ParameterizedTypeReference<RestResultGeneric<Student>>
                 ptr = new ParameterizedTypeReference<RestResultGeneric<Student>>() {
         };
+
+
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));

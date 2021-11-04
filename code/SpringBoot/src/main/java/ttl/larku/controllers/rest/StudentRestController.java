@@ -1,5 +1,6 @@
 package ttl.larku.controllers.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ttl.larku.domain.Student;
 import ttl.larku.service.StudentService;
 
@@ -29,6 +31,7 @@ public class StudentRestController {
     private StudentService studentService;
 
     //Constructor injection.  Also helps with testing.
+    @Autowired
     public StudentRestController(StudentService studentService, UriCreator uriCreator) {
         this.studentService = studentService;
         this.uriCreator = uriCreator;

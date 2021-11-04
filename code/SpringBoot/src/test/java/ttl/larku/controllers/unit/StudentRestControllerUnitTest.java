@@ -105,7 +105,7 @@ public class StudentRestControllerUnitTest {
 
 
         Mockito.verify(studentService).createStudent(student);
-        Mockito.verify(uriCreator).getUriFor(1);
+//        Mockito.verify(uriCreator).getUriFor(1);
 
     }
 
