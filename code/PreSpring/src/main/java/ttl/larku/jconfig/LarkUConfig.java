@@ -18,7 +18,7 @@ public class LarkUConfig {
 
     @Bean
     public BaseDAO<Student> studentDAO() {
-       return new InMemoryStudentDAO();
+        return new InMemoryStudentDAO();
     }
 
 
