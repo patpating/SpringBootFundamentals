@@ -7,7 +7,6 @@ import ttl.larku.domain.Student;
 import java.time.LocalDate;
 import java.util.List;
 
-@Transactional
 public class StudentService {
 
     private BaseDAO<Student> studentDAO;

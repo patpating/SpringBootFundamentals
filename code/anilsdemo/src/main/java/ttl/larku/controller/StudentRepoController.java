@@ -8,6 +8,8 @@ import ttl.larku.domain.Student;
 import ttl.larku.service.StudentRepoService;
 import ttl.larku.service.StudentService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.net.URI;
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class StudentRepoController {
 
     @Autowired
     private StudentRepoService studentService;
+
+    @PersistenceContext
+    private EntityManager entityManger;
 
     @GetMapping
     public List<Student> getStudents() {

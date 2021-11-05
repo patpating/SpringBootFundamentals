@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 //@Sql(scripts = { "/schema.sql", "/data.sql" }, executionPhase= Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Transactional
+//@Transactional
 public class StudentServiceTest {
 
     private String name1 = "Bloke";

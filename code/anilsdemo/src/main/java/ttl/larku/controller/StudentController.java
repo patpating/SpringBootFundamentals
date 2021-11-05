@@ -7,6 +7,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ttl.larku.domain.Student;
 import ttl.larku.service.StudentService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.net.URI;
 import java.util.List;
 
