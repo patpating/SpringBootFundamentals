@@ -21,7 +21,9 @@ public class AtValueDemoServiceTest {
 
         String host = avds.getHost();
 
-        System.out.println("profile: " + profile + ", isDev: " + isDev + ", host: " + host);
+        String configName = avds.getConfigName();
+
+        System.out.println("profile: " + profile + ", isDev: " + isDev + ", host: " + host + ", cf: " + configName);
 
         assertTrue(isDev);
         assertEquals("xyz.com", host);

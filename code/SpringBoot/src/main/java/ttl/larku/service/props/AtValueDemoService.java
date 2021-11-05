@@ -22,6 +22,9 @@ public class AtValueDemoService {
     @Value("#{connectionService.getHost()}")
     private String host;
 
+    @Value("${ttl.tester.config.name}")
+    private String configName;
+
     public String getProfiles() {
         return profiles;
     }
@@ -41,4 +44,9 @@ public class AtValueDemoService {
     public String getHost() {
         return host;
     }
+
+    public String getConfigName() {
+        return configName;
+    }
+
 }

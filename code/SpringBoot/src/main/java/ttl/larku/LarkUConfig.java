@@ -21,6 +21,8 @@ import ttl.larku.service.RegistrationService;
 import ttl.larku.service.StudentService;
 import ttl.larku.service.props.ServiceThatWeDontOwn;
 
+import java.time.Duration;
+
 @Configuration
 @PropertySource({"classpath:/larkUContext.properties"})
 public class LarkUConfig {

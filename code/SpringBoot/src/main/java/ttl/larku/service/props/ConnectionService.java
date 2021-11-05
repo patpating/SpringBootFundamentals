@@ -2,7 +2,6 @@ package ttl.larku.service.props;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ttl.larku.domain.ConnectionServiceProperties;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;

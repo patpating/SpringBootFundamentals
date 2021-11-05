@@ -146,4 +146,17 @@ public class JPATrackDAOTest {
         assertEquals(3, result.size());
 
     }
+
+    @Test
+    public void testsGetByExampleInject() {
+        Track track = Track.album("*' or 1=1--").build();
+
+        List<Track> result = trackDAO.getByExample(track);
+
+        System.out.println("Result:");
+        result.forEach(System.out::println);
+
+        assertEquals(3, result.size());
+
+    }
 }

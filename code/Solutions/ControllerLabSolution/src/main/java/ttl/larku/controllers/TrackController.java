@@ -136,7 +136,6 @@ public class TrackController {
 //        regService.getStudentService().updateStudentPartial(id, props);
         trackService.updateTrackPartialBeanWrapper(id, props);
         return ResponseEntity.noContent().build();
-
     }
 
 }
