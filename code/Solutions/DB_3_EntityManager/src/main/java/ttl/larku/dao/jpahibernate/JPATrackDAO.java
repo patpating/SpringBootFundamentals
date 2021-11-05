@@ -69,39 +69,15 @@ public class JPATrackDAO implements BaseDAO<Track> {
     }
 
     /**
-     * Clumsy way of doing this, by creating a query String on the fly.
-     * See this class in DB_4_Extras for an example of using the Criteria
-     * query.  Which is still ugly, but probably better.
+     * Use the Criteria Query API to build a query dynamically
+     * using the give example Track.
      *
      * @param example
      * @return
      */
+
     @Override
     public List<Track> getByExample(Track example) {
-        String rootQuery = "select t from Track t where ";
-        StringBuilder builder = new StringBuilder(rootQuery);
-        StringBuilder qb = new StringBuilder();
-        if (example.getTitle() != null) {
-            //we are doing a 'like' comparison, with the lower case entity title to lower case example title.
-            qb.append(qb.length() == 0 ? " " : " or ");
-            qb.append(" LOWER(t.title) like '%").append(example.getTitle().toLowerCase()).append("%'");
-        }
-        if (example.getArtist() != null) {
-            qb.append(qb.length() == 0 ? " " : " or ");
-            qb.append(" LOWER(t.artist) like '%").append(example.getArtist().toLowerCase()).append("%'");
-        }
-        if (example.getAlbum() != null) {
-            qb.append(qb.length() == 0 ? " " : " or ");
-            qb.append(" LOWER(t.album) like '%").append(example.getAlbum().toLowerCase()).append("%'");
-        }
-        String finalQuery = builder.append(qb).toString();
-        TypedQuery<Track> query = em.createQuery(finalQuery, Track.class);
-        List<Track> result = query.getResultList();
-
-        return result;
-    }
-
-    public List<Track> getByExampleCriteria(Track example) {
 
         //Get the builder
         CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -137,6 +113,38 @@ public class JPATrackDAO implements BaseDAO<Track> {
         cq.where(finalPred);
 
         List<Track> result = em.createQuery(cq).getResultList();
+
+        return result;
+    }
+
+    /**
+     * Clumsy way of doing this, by creating a query String on the fly.
+     * See the method above for an example using the Criteria Api.
+     * Which is still ugly, probably better.
+     *
+     * @param example
+     * @return
+     */
+    public List<Track> getByExampleBad(Track example) {
+        String rootQuery = "select t from Track t where ";
+        StringBuilder builder = new StringBuilder(rootQuery);
+        StringBuilder qb = new StringBuilder();
+        if (example.getTitle() != null) {
+            //we are doing a 'like' comparison, with the lower case entity title to lower case example title.
+            qb.append(qb.length() == 0 ? " " : " or ");
+            qb.append(" LOWER(t.title) like '%").append(example.getTitle().toLowerCase()).append("%'");
+        }
+        if (example.getArtist() != null) {
+            qb.append(qb.length() == 0 ? " " : " or ");
+            qb.append(" LOWER(t.artist) like '%").append(example.getArtist().toLowerCase()).append("%'");
+        }
+        if (example.getAlbum() != null) {
+            qb.append(qb.length() == 0 ? " " : " or ");
+            qb.append(" LOWER(t.album) like '%").append(example.getAlbum().toLowerCase()).append("%'");
+        }
+        String finalQuery = builder.append(qb).toString();
+        TypedQuery<Track> query = em.createQuery(finalQuery, Track.class);
+        List<Track> result = query.getResultList();
 
         return result;
     }

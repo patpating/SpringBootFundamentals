@@ -21,9 +21,13 @@ public interface BaseDAO<T> {
 
     public List<T> getAll();
 
-    public void deleteStore();
+    public default void deleteStore() {
+        throw new UnsupportedOperationException("Needs implementing");
+    };
 
-    public void createStore();
+    public default void createStore() {
+        throw new UnsupportedOperationException("Needs implementing");
+    };
 
     default public List<T> findBy(Predicate<T> pred) {
         List<T> x = getAll();
